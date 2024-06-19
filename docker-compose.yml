@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  rs-api:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: rs-api:release
+    ports:
+      - "7088:7088"
+      - "5217:5217"
+    networks:
+      - my_network
+    depends_on:
+      - mssql
+      - rabbitmq
+
+  mssql:
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      SA_PASSWORD: "SA_PASSWORD"
+      ACCEPT_EULA: Y
+    ports:
+      - "1433:1433"
+    volumes:
+      - ./mssql-init:/docker-entrypoint-initdb.d
+    networks:
+      - my_network
+
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - my_network
+
+networks:
+  my_network:
