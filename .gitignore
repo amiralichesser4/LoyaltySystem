@@ -396,3 +396,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/.idea/.idea.LoyaltySystem.dir/.idea/indexLayout.xml
+/.idea/.idea.LoyaltySystem.dir/.idea/projectSettingsUpdater.xml
+/.idea/.idea.LoyaltySystem.dir/.idea/workspace.xml
